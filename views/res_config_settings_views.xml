@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_ai_copilot" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale_ai_copilot</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='crm']" position="inside">
+                <block title="NVIDIA AI Sales Co-Pilot Integration" id="nvidia_ai_copilot_settings">
+                    <setting help="Configure your NVIDIA API key for autonomous quotation drafting with z-ai/glm-5.3-flash.">
+                        <field name="nvidia_api_key" password="True" placeholder="nvapi-..."/>
+                    </setting>
+                    <button name="action_test_nvidia_api"
+                            string="Test NVIDIA API"
+                            type="object"
+                            class="btn-secondary oe_inline"/>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

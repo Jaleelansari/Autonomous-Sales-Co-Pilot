@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_view_form_inherit_ai_copilot" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.sale_ai_copilot</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Inject AI Generate Quote button into the form header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_ai_quotation"
+                        string="AI Generate Quote"
+                        type="object"
+                        class="oe_highlight"/>
+            </xpath>
+
+            <!-- Inject smart stat button into the top button box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                        type="action"
+                        name="%(sale.action_quotations_with_onboarding)d"
+                        icon="fa-pencil-square-o"
+                        context="{'default_opportunity_id': id, 'search_default_opportunity_id': id}">
+                    <field name="ai_quote_count" widget="statinfo" string="AI Quotes"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
